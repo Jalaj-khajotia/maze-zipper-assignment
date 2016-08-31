@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Maze Puzzle </title>
+    <link href="main.css" rel="stylesheet">
+    <script type="text/javascript" src="angular-1.0.0rc1.js"></script>
+    <script src="main.js"></script>
+
+</head>
+
+<body>
+    <div ng:app ng-controller="MazeCntl">
+        <h1>Maze Problem</h1> Height:
+        <input type="text" ng-model="height" /> Width:
+        <input type="text" ng-model="width" />
+        <button ng-click="newGame()">New</button>
+        <button ng-click="findSolution()">findSolution</button>
+        <table id="board">
+            <tr ng-repeat="row in board">
+                <td ng-repeat="cell in row" ng-click="toggle($parent.$index, $index)">
+                    <span ng-show="!cell">O</span>
+                    <span ng-show="cell===-1">-1</span>
+                </td>
+            </tr>
+        </table>
+        <p class="history" ng-show="history.length > 0">Previous steps (click to rewind)</p>
+        <table class="history">
+            <tr>
+                <td ng-repeat="step in history" ng-click="$parent.step($index)">{{$index}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
